@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dếm số lannf xuất hiện của một số</title>
+</head>
+<body>
+<script>
+
+
+    function binSearch(arr, data) {
+        for (let i = 0; i < arr.length; i++) {
+            if(arr[i]=== data) {
+                return i
+            }
+
+        }
+
+    }
+
+    function count(arr, data) {
+        let count = 0;
+        let position = binSearch(arr, data);
+        if (position > -1) {
+            count++;
+            for (let i = position - 1; i > 0; i--) {
+                if (arr[i] === data) {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+
+            for (let j = position + 1; j < arr.length; j++) {
+                if (arr[j] === data) {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+        }
+        return count;
+    }
+
+    let nums = [];
+    for (let i = 0; i < 100; ++i) {
+        nums[i] = Math.floor(Math.random() * 101);
+    }
+
+    for (let i = 1; i < 101; i++) {
+
+        document.write(nums[i - 1]+'        ');
+        if (i % 10 === 0) {
+            document.write("<br/>")
+        }
+    }
+
+    document.write("<br/>");
+    let val = parseInt(prompt("Enter a value to count: "));
+    let retVal = count(nums, val);
+    document.write("số lần suất hiện là: " + retVal + " của số: " + val + ".");
+
+</script>
+</body>
+</html>
